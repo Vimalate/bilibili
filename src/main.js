@@ -1,7 +1,7 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
- * @LastEditTime: 2020-07-13 14:25:34
+ * @LastEditTime: 2020-07-13 21:06:25
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\main.js
  */
@@ -11,7 +11,9 @@ import router from "./router";
 import store from "./store";
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import http from './http'
 
+Vue.prototype.$http = http
 Vue.use(Vant);
 Vue.config.productionTip = false;
 

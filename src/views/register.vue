@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:45:37
- * @LastEditTime: 2020-07-13 20:53:17
+ * @LastEditTime: 2020-07-13 21:16:48
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\register.vue
 --> 
@@ -23,7 +23,7 @@
       rule="^.{6,16}$"
       @inputChange="res=>password=res"
     ></login-text>
-    <login-btn btnText="注册"></login-btn>
+    <login-btn btnText="注册" @registerSubmit="registerSubmit"></login-btn>
   </div>
 </template>
 
@@ -38,6 +38,18 @@ export default {
       username: "",
       password: ""
     };
+  },
+  methods: {
+    async registerSubmit() {
+      if (this.name && this.username && this.password) {
+        console.log("按钮");
+        const res = await this.$http.post("/register", {
+          name: this.name,
+          username: this.username,
+          password: this.password
+        });
+      }
+    }
   },
   components: { LoginTop, LoginText, LoginBtn }
 };

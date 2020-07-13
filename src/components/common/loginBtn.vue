@@ -1,13 +1,13 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 20:26:58
- * @LastEditTime: 2020-07-13 20:35:12
+ * @LastEditTime: 2020-07-13 21:03:42
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\common\loginBtn.vue
 --> 
 <template>
   <div class="btn">
-    <div class="loginBtn">{{btnText}}</div>
+    <div class="loginBtn" @click="register">{{btnText}}</div>
   </div>
 </template>
 
@@ -16,6 +16,11 @@ export default {
   props: ["btnText"],
   data() {
     return {};
+  },
+  methods: {
+    register() {
+      this.$emit("registerSubmit");
+    }
   }
 };
 </script>
