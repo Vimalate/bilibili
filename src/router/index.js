@@ -1,7 +1,7 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
- * @LastEditTime: 2020-07-13 13:47:54
+ * @LastEditTime: 2020-07-14 21:33:08
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\router\index.js
  */
@@ -21,7 +21,14 @@ const routes = [{
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/Login.vue")
   }
+
   // {
   //   path: "/about",
   //   name: "About",

@@ -1,25 +1,26 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:45:37
- * @LastEditTime: 2020-07-14 21:44:44
+ * @LastEditTime: 2020-07-14 21:47:02
  * @Description: 
- * @FilePath: \bilibili\bilibili\src\views\register.vue
+ * @FilePath: \bilibili\bilibili\src\views\Login.vue
 --> 
 <template>
   <div class="container">
-    <login-top middleTop="注册bilibili">
-      <div slot="right" class="go_login" @click="goLogin">去登录</div>
+    <login-top middleTop="登录bilibili">
+      <div slot="right" class="go_login" @click="goRegister">去注册</div>
     </login-top>
-    <login-text
+    <!-- <login-text
       label="姓名"
       style="margin:4.167vw 0"
       placeholder="请输入姓名"
       rule="^.{6,16}$"
       @inputChange="res=>model.name=res"
-    ></login-text>
+    ></login-text>-->
     <login-text
       label="账号"
       placeholder="请输入账号"
+      style="margin:4.167vw 0"
       rule="^.{6,16}$"
       @inputChange="res=>model.username=res"
     ></login-text>
@@ -30,7 +31,7 @@
       rule="^.{6,16}$"
       @inputChange="res=>model.password=res"
     ></login-text>
-    <login-btn btnText="注册" @registerSubmit="registerSubmit"></login-btn>
+    <login-btn btnText="登录" @registerSubmit="registerSubmit"></login-btn>
   </div>
 </template>
 
@@ -42,7 +43,6 @@ export default {
   data() {
     return {
       model: {
-        name: "",
         username: "",
         password: ""
       }
@@ -51,20 +51,16 @@ export default {
   methods: {
     async registerSubmit() {
       let rule = /^.{6,16}$/; //输入不超过16位
-      if (
-        rule.test(this.model.name) &&
-        rule.test(this.model.username) &&
-        rule.test(this.model.password)
-      ) {
-        const res = await this.$http.post("/register", this.model);
+      if (rule.test(this.model.username) && rule.test(this.model.password)) {
+        const res = await this.$http.post("/login", this.model);
         console.log(res);
         this.$msg.fail(res.data.msg);
       } else {
         this.$msg.fail("格式不正确");
       }
     },
-    goLogin() {
-      this.$router.push("/login");
+    goRegister() {
+      this.$router.push("/register");
     }
   },
   components: { LoginTop, LoginText, LoginBtn }

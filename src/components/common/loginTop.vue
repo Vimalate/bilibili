@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:51:07
- * @LastEditTime: 2020-07-13 14:13:10
+ * @LastEditTime: 2020-07-14 21:38:29
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\common\loginTop.vue
 --> 
@@ -9,7 +9,9 @@
   <div class="login_top">
     <div></div>
     <div>{{middleTop}}</div>
-    <div></div>
+    <div>
+      <slot name="right" />
+    </div>
   </div>
 </template>
 
