@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-14 21:47:40
- * @LastEditTime: 2020-07-15 22:42:26
+ * @LastEditTime: 2020-07-16 22:06:31
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\userinfo.vue
 --> 
@@ -20,17 +20,27 @@
 </template>
 
 <script>
-import NavBar from "@/components/common/Navbar.vue";
-import UserDetail from "@/components/userComponent/userDetail.vue";
+import NavBar from '@/components/common/Navbar.vue'
+import UserDetail from '@/components/userComponent/userDetail.vue'
 export default {
   data() {
-    return {};
+    return {}
   },
   components: {
     NavBar,
     UserDetail
-  }
-};
+  },
+  methods: {
+    async getUserinfoData() {
+      const res = await this.$http.get('/user/' + localStorage.getItem('id'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+    }
+  },
+  created() {}
+}
 </script>
 <style lang='scss' scoped>
 .userinfo {

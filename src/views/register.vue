@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:45:37
- * @LastEditTime: 2020-07-14 21:44:44
+ * @LastEditTime: 2020-07-16 21:41:28
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\register.vue
 --> 
@@ -59,6 +59,13 @@ export default {
         const res = await this.$http.post("/register", this.model);
         console.log(res);
         this.$msg.fail(res.data.msg);
+        if (res.data.code === 200) {
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("token", res.data.objtoken);
+          setTimeout(() => {
+            this.$router.push("/userinfo");
+          }, 500);
+        }
       } else {
         this.$msg.fail("格式不正确");
       }
