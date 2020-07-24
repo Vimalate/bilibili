@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:45:37
- * @LastEditTime: 2020-07-14 21:47:02
+ * @LastEditTime: 2020-07-24 21:46:52
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Login.vue
 --> 
@@ -36,35 +36,43 @@
 </template>
 
 <script>
-import LoginTop from "@/components/common/loginTop";
-import LoginText from "@/components/common/loginText";
-import LoginBtn from "@/components/common/loginBtn";
+import LoginTop from '@/components/common/loginTop'
+import LoginText from '@/components/common/loginText'
+import LoginBtn from '@/components/common/loginBtn'
 export default {
   data() {
     return {
       model: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       }
-    };
+    }
   },
   methods: {
     async registerSubmit() {
-      let rule = /^.{6,16}$/; //输入不超过16位
+      let rule = /^.{6,16}$/ //输入不超过16位
       if (rule.test(this.model.username) && rule.test(this.model.password)) {
-        const res = await this.$http.post("/login", this.model);
-        console.log(res);
-        this.$msg.fail(res.data.msg);
+        const res = await this.$http.post('/login', this.model)
+        console.log(res)
+        this.$msg.fail(res.data.msg)
+        if (res.data.code == 301 || res.data.code == 302) {
+          return
+        }
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('id', res.data.id)
+        setTimeout(() => {
+          this.$router.push('/userinfo')
+        }, 500)
       } else {
-        this.$msg.fail("格式不正确");
+        this.$msg.fail('格式不正确')
       }
     },
     goRegister() {
-      this.$router.push("/register");
+      this.$router.push('/register')
     }
   },
   components: { LoginTop, LoginText, LoginBtn }
-};
+}
 </script>
 
 <style scoped lang="scss">

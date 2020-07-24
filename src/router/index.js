@@ -1,7 +1,7 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
- * @LastEditTime: 2020-07-14 21:48:20
+ * @LastEditTime: 2020-07-24 22:43:49
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\router\index.js
  */
@@ -31,23 +31,31 @@ const routes = [{
   {
     path: '/userinfo',
     name: 'userinfo',
+    meta: {
+      istoken: true
+    },
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/userinfo.vue")
   }
-
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ];
 
+
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 });
+
+router.beforeEach((to, from, next) => {
+  if (!localStorage.getItem('token') && !localStorage.getItem('id') && !to.meta.istoken == true) {
+    router.push({
+      name: 'login'
+    })
+    return
+  } else {
+    next()
+  }
+
+})
+
 
 export default router;
