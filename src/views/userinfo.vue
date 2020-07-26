@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-14 21:47:40
- * @LastEditTime: 2020-07-24 22:19:07
+ * @LastEditTime: 2020-07-26 17:28:31
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\userinfo.vue
 --> 
@@ -15,7 +15,7 @@
         alt
       />
     </div>
-    <UserDetail />
+    <UserDetail :userinfo="model" />
   </div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
   methods: {
     async getUserinfoData() {
       const res = await this.$http.get('/user/' + localStorage.getItem('id'))
+      this.model = res.data[0]
       console.log(res)
     }
   },

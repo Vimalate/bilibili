@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-15 22:40:50
- * @LastEditTime: 2020-07-15 23:26:29
+ * @LastEditTime: 2020-07-26 17:01:36
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\userComponent\userDetail.vue
 --> 
@@ -26,7 +26,7 @@
             <span class="user_text">获赞</span>
           </p>
         </div>
-        <div class="user_btn">编辑资料</div>
+        <div class="user_btn" @click="$router.push('/edit')">编辑资料</div>
       </div>
     </div>
     <div class="username">
@@ -39,9 +39,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 <style lang='scss' scoped>
 .userDetail {

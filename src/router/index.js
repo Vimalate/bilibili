@@ -1,7 +1,7 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
- * @LastEditTime: 2020-07-24 22:43:49
+ * @LastEditTime: 2020-07-26 17:00:24
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\router\index.js
  */
@@ -25,14 +25,21 @@ const routes = [{
   {
     path: '/login',
     name: 'login',
-    component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Login.vue")
+    component: () => import( /* webpackChunkName: "about" */ "../views/Login.vue")
+  },
+  {
+    path: '/edit',
+    name: 'edit',
+    meta: {
+      istoken: true //需要token
+    },
+    component: () => import( /* webpackChunkName: "about" */ "../views/Edit.vue")
   },
   {
     path: '/userinfo',
     name: 'userinfo',
     meta: {
-      istoken: true
+      istoken: true //需要token
     },
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/userinfo.vue")
@@ -46,16 +53,13 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (!localStorage.getItem('token') && !localStorage.getItem('id') && !to.meta.istoken == true) {
-    router.push({
-      name: 'login'
-    })
+  if (!localStorage.getItem('token') && !localStorage.getItem('id') && to.meta.istoken == true) {
+    router.push('/login')
+    Vue.prototype.$msg.fail('请重新登录')
     return
   } else {
     next()
   }
-
 })
-
 
 export default router;
