@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-26 16:59:29
- * @LastEditTime: 2020-07-26 21:14:44
+ * @LastEditTime: 2020-07-26 21:45:39
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Edit.vue
 --> 
@@ -23,16 +23,34 @@
     <edit-banner left="账号">
       <a href="javascript:;" slot="right">{{model.name}}</a>
     </edit-banner>
-    <edit-banner left="性别"></edit-banner>
-    <edit-banner left="个签" @bannerClick="bannerClick"></edit-banner>
+    <edit-banner left="性别" @bannerClick="genderShow=true">
+      <a href="javascript:;" slot="right">{{model.gender===1?'男':'女'}}</a>
+    </edit-banner>
+    <edit-banner left="个签" @bannerClick="textClick">
+      <a href="javascript:;" slot="right">{{model.user_desc}}</a>
+    </edit-banner>
 
-    <van-dialog v-model="show" title="昵称" show-cancel-button @confirm="confirmUpdate">
+    <van-dialog
+      v-model="show"
+      title="昵称"
+      show-cancel-button
+      @confirm="confirmUpdate"
+      @cancel="value=''"
+    >
       <van-field v-model="value" placeholder="请输入用户名" autofocus />
     </van-dialog>
 
-    <van-dialog v-model="show" title="昵称" show-cancel-button @confirm="confirmUpdate">
-      <van-field v-model="value" type="textarea" placeholder="请输入个性签名" autofocus />
+    <van-dialog
+      v-model="textShow"
+      title="个签"
+      show-cancel-button
+      @confirm="confirmSignature"
+      @cancel="value=''"
+    >
+      <van-field v-model="signature" type="textarea" placeholder="请输入个性签名" autofocus />
     </van-dialog>
+
+    <van-action-sheet v-model="genderShow" cancel-text="取消" :actions="actions" @select="onSelect" />
   </div>
 </template>
 
@@ -45,7 +63,13 @@ export default {
       model: {},
       show: false,
       textShow: false,
-      value: ''
+      genderShow: false,
+      value: '',
+      signature: '',
+      actions: [
+        { name: '男', val: 1 },
+        { name: '女', val: 0 }
+      ]
     }
   },
   components: {
@@ -77,15 +101,31 @@ export default {
         '/update/' + localStorage.getItem('id'),
         this.model
       )
+      if (res.data.code == 200) {
+        this.$msg.success('修改成功')
+      }
+    },
+    onSelect(data) {
+      this.model.gender = data.val
+      this.userUpdate()
+      this.genderShow = false
     },
     bannerClick() {
       this.show = !this.show
+    },
+    textClick() {
+      this.textShow = !this.textShow
     },
     confirmUpdate() {
       console.log('ok')
       this.model.username = this.value
       this.userUpdate()
       this.value = ''
+    },
+    confirmSignature() {
+      this.model.user_desc = this.signature
+      this.userUpdate()
+      this.signature = ''
     }
   }
 }
