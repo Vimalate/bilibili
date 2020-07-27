@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-26 16:59:29
- * @LastEditTime: 2020-07-26 21:45:39
+ * @LastEditTime: 2020-07-27 21:40:11
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Edit.vue
 --> 
@@ -51,6 +51,7 @@
     </van-dialog>
 
     <van-action-sheet v-model="genderShow" cancel-text="取消" :actions="actions" @select="onSelect" />
+    <div class="goBack" @click="goBack">返回个人中心</div>
   </div>
 </template>
 
@@ -72,6 +73,7 @@ export default {
       ]
     }
   },
+
   components: {
     NavBar,
     editBanner
@@ -80,6 +82,9 @@ export default {
     this.getUserInfo()
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     async getUserInfo() {
       const res = await this.$http.get('/user/' + localStorage.getItem('id'))
       this.model = res.data[0]
@@ -153,5 +158,15 @@ export default {
 }
 .navbar {
   margin-bottom: 10px;
+}
+.goBack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  background-color: #fff;
+  padding: 10px 0;
+  margin-top: 20px;
+  font-size: 4.5vw;
 }
 </style>

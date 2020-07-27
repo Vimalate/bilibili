@@ -1,7 +1,7 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-15 22:40:50
- * @LastEditTime: 2020-07-26 17:01:36
+ * @LastEditTime: 2020-07-27 21:28:00
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\userComponent\userDetail.vue
 --> 
@@ -9,7 +9,7 @@
   <div class="userDetail">
     <div>
       <div>
-        <img src="http://i1.hdslb.com/bfs/face/e8e44b9e8611f76a3c4d71e6750d1c8c74bf3bef.jpg" alt />
+        <img :src="userinfo.user_img" alt />
       </div>
       <div class="user_edit">
         <div class="user_edit_detail">
@@ -38,6 +38,7 @@
 
 <script>
 export default {
+  props: ['userinfo'],
   data() {
     return {}
   }

@@ -1,21 +1,20 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
- * @LastEditTime: 2020-07-26 17:00:24
+ * @LastEditTime: 2020-07-27 21:42:12
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\router\index.js
  */
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Register from "../views/register.vue";
 
 Vue.use(VueRouter);
 
 const routes = [{
-    path: "/",
-    name: "Home",
-    component: Home
+    path: '/',
+    name: 'home',
+    component: () => import( /* webpackChunkName: "about" */ "../views/Home.vue")
   },
   {
     path: '/register',
