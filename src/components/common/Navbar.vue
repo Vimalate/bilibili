@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-07-27 21:33:25
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\common\Navbar.vue
---> 
+-->
 <template>
   <div class="navbar">
     <div class="logo">
@@ -36,7 +36,7 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .navbar {
   height: 12.5vw;
   background-color: #fff;

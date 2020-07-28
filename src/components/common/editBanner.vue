@@ -4,10 +4,10 @@
  * @LastEditTime: 2020-07-26 21:00:50
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\common\editBanner.vue
---> 
+-->
 <template>
   <div class="editbanner" @click="bannerClick">
-    <span>{{left}}</span>
+    <span>{{ left }}</span>
     <span>
       <slot name="right"></slot>
     </span>

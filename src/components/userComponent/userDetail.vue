@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-07-27 21:28:00
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\userComponent\userDetail.vue
---> 
+-->
 <template>
   <div class="userDetail">
     <div>
@@ -44,7 +44,7 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .userDetail {
   background-color: #fff;
   padding: 2px 12px;

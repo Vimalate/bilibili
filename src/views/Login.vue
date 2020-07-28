@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-07-24 21:46:52
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Login.vue
---> 
+-->
 <template>
   <div class="container">
     <login-top middleTop="登录bilibili">
@@ -22,14 +22,14 @@
       placeholder="请输入账号"
       style="margin:4.167vw 0"
       rule="^.{6,16}$"
-      @inputChange="res=>model.username=res"
+      @inputChange="res => (model.username = res)"
     ></login-text>
     <login-text
       label="密码"
       type="password"
       placeholder="请输入密码"
       rule="^.{6,16}$"
-      @inputChange="res=>model.password=res"
+      @inputChange="res => (model.password = res)"
     ></login-text>
     <login-btn btnText="登录" @registerSubmit="registerSubmit"></login-btn>
   </div>

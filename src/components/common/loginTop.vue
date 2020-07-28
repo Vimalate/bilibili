@@ -4,11 +4,11 @@
  * @LastEditTime: 2020-07-14 21:38:29
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\components\common\loginTop.vue
---> 
+-->
 <template>
   <div class="login_top">
     <div></div>
-    <div>{{middleTop}}</div>
+    <div>{{ middleTop }}</div>
     <div>
       <slot name="right" />
     </div>
@@ -17,12 +17,12 @@
 
 <script>
 export default {
-  props: ["middleTop"],
+  props: ['middleTop'],
   data() {
-    return {};
+    return {}
   },
   components: {}
-};
+}
 </script>
 
 <style scoped lang="scss">

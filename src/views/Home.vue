@@ -4,16 +4,17 @@
  * @LastEditTime: 2020-07-27 22:11:14
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Home.vue
---> 
+-->
 <template>
   <div class="home">
     <nav-bar></nav-bar>
     <van-tabs v-model="active" sticky>
       <van-tab
-        v-for="(item,index) in categoryList"
+        v-for="(item, index) in categoryList"
         :title="item.title"
         :key="index"
-      >{{ item.title }}</van-tab>
+        >{{ item.title }}</van-tab
+      >
     </van-tabs>
   </div>
 </template>

@@ -2,19 +2,20 @@
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
  * @LastEditTime: 2020-07-27 21:42:12
- * @Description: 
+ * @Description:
  * @FilePath: \bilibili\bilibili\src\router\index.js
  */
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Register from "../views/register.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Register from '../views/register.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+  {
     path: '/',
     name: 'home',
-    component: () => import( /* webpackChunkName: "about" */ "../views/Home.vue")
+    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
   },
   {
     path: '/register',
@@ -24,7 +25,8 @@ const routes = [{
   {
     path: '/login',
     name: 'login',
-    component: () => import( /* webpackChunkName: "about" */ "../views/Login.vue")
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Login.vue')
   },
   {
     path: '/edit',
@@ -32,7 +34,7 @@ const routes = [{
     meta: {
       istoken: true //需要token
     },
-    component: () => import( /* webpackChunkName: "about" */ "../views/Edit.vue")
+    component: () => import(/* webpackChunkName: "about" */ '../views/Edit.vue')
   },
   {
     path: '/userinfo',
@@ -41,18 +43,21 @@ const routes = [{
       istoken: true //需要token
     },
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/userinfo.vue")
+      import(/* webpackChunkName: "about" */ '../views/userinfo.vue')
   }
-];
-
+]
 
 const router = new VueRouter({
   routes,
   mode: 'history'
-});
+})
 
 router.beforeEach((to, from, next) => {
-  if (!localStorage.getItem('token') && !localStorage.getItem('id') && to.meta.istoken == true) {
+  if (
+    !localStorage.getItem('token') &&
+    !localStorage.getItem('id') &&
+    to.meta.istoken == true
+  ) {
     router.push('/login')
     Vue.prototype.$msg.fail('请重新登录')
     return
@@ -61,4 +66,4 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export default router;
+export default router

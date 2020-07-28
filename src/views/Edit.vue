@@ -4,30 +4,36 @@
  * @LastEditTime: 2020-07-27 21:40:11
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Edit.vue
---> 
+-->
 <template>
   <div v-if="model" class="edit">
     <div class="navbar">
       <nav-bar></nav-bar>
     </div>
     <div class="uploadfile">
-      <van-uploader class="uploadimg" :after-read="afterRead" preview-size="100vw" />
+      <van-uploader
+        class="uploadimg"
+        :after-read="afterRead"
+        preview-size="100vw"
+      />
       <edit-banner left="头像" class="avator">
         <img :src="model.user_img" slot="right" alt v-if="model.user_img" />
         <img src="@/assets/logo.png" slot="right" alt v-else />
       </edit-banner>
     </div>
     <edit-banner left="昵称" @bannerClick="bannerClick">
-      <a href="javascript:;" slot="right">{{model.username}}</a>
+      <a href="javascript:;" slot="right">{{ model.username }}</a>
     </edit-banner>
     <edit-banner left="账号">
-      <a href="javascript:;" slot="right">{{model.name}}</a>
+      <a href="javascript:;" slot="right">{{ model.name }}</a>
     </edit-banner>
-    <edit-banner left="性别" @bannerClick="genderShow=true">
-      <a href="javascript:;" slot="right">{{model.gender===1?'男':'女'}}</a>
+    <edit-banner left="性别" @bannerClick="genderShow = true">
+      <a href="javascript:;" slot="right">{{
+        model.gender === 1 ? '男' : '女'
+      }}</a>
     </edit-banner>
     <edit-banner left="个签" @bannerClick="textClick">
-      <a href="javascript:;" slot="right">{{model.user_desc}}</a>
+      <a href="javascript:;" slot="right">{{ model.user_desc }}</a>
     </edit-banner>
 
     <van-dialog
@@ -35,7 +41,7 @@
       title="昵称"
       show-cancel-button
       @confirm="confirmUpdate"
-      @cancel="value=''"
+      @cancel="value = ''"
     >
       <van-field v-model="value" placeholder="请输入用户名" autofocus />
     </van-dialog>
@@ -45,12 +51,22 @@
       title="个签"
       show-cancel-button
       @confirm="confirmSignature"
-      @cancel="value=''"
+      @cancel="value = ''"
     >
-      <van-field v-model="signature" type="textarea" placeholder="请输入个性签名" autofocus />
+      <van-field
+        v-model="signature"
+        type="textarea"
+        placeholder="请输入个性签名"
+        autofocus
+      />
     </van-dialog>
 
-    <van-action-sheet v-model="genderShow" cancel-text="取消" :actions="actions" @select="onSelect" />
+    <van-action-sheet
+      v-model="genderShow"
+      cancel-text="取消"
+      :actions="actions"
+      @select="onSelect"
+    />
     <div class="goBack" @click="goBack">返回个人中心</div>
   </div>
 </template>

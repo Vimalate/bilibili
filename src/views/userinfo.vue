@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-07-26 17:28:31
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\userinfo.vue
---> 
+-->
 <template>
   <div class="userinfo">
     <NavBar />
@@ -44,7 +44,7 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .userinfo {
   .backImg {
     width: 100%;
