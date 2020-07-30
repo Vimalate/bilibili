@@ -1,16 +1,18 @@
 <!--
  * @Author: Vimalakirti
  * @Date: 2020-07-13 13:06:39
- * @LastEditTime: 2020-07-28 22:27:13
+ * @LastEditTime: 2020-07-30 22:28:24
  * @Description: 
  * @FilePath: \bilibili\bilibili\src\views\Home.vue
 -->
 <template>
   <div class="home">
     <nav-bar></nav-bar>
-    <van-tabs v-model="active" sticky>
+    <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item, index) in categoryList" :title="item.title" :key="index">
-        <Detail :detailItem="ite" v-for="(ite,idx) in item.list" :key="idx"></Detail>
+        <div class="detail-container">
+          <Detail class="detail-item" :detailItem="ite" v-for="(ite, idx) in item.list" :key="idx"></Detail>
+        </div>
       </van-tab>
     </van-tabs>
   </div>
@@ -73,3 +75,17 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.home {
+  background-color: #fff;
+}
+.detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .detail-item {
+    margin: 5px 0;
+    width: 45%;
+  }
+}
+</style>
